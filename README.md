@@ -1,4 +1,4 @@
-# Platform Docker on Single Machine - CPU version
+# DeepDetect Platform Docker
 
 ## Installation
 
