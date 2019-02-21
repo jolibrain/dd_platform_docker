@@ -2,6 +2,19 @@ version: '2.3'
 services:
 
   #
+  # Platform Data
+  #
+  # Get data from dockerhub to run various services
+  #
+
+  platform_data:
+    container_name: jolibrain_platform_data
+    image: jolibrain/platform_data:latest
+    user: ${CURRENT_UID}
+    volumes:
+      - ${DD_PLATFORM}:/platform
+
+  #
   # Platform UI
   #
   # Serving react container
@@ -25,7 +38,7 @@ services:
     runtime: nvidia
     restart: always
     volumes:
-      - /opt/platform:/opt/platform
+      - ${DD_PLATFORM}:/opt/platform
 
   #
   # nginx
@@ -47,8 +60,8 @@ services:
     volumes:
       - platform_ui:/var/www/html
       - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
-      - /opt/platform/docs/public:/var/www/html/docs
-      - /opt/platform:/opt/platform
+      - ${DD_PLATFORM}/docs/public:/var/www/html/docs
+      - ${DD_PLATFORM}:/opt/platform
       - ./config/platform_ui/config.json:/var/www/html/config.json
 
   #
@@ -62,8 +75,8 @@ services:
     user: ${CURRENT_UID}
     image: jolibrain/jupyter_dd_notebook
     volumes:
-      - /opt/platform:/opt/platform
-      - /opt/platform/notebooks:/home/jovyan/work
+      - ${DD_PLATFORM}:/opt/platform
+      - ${DD_PLATFORM}/notebooks:/home/jovyan/work
       - ./config/jupyter:/home/jovyan/.jupyter
 
   #
@@ -89,8 +102,8 @@ services:
     image: filebrowser/filebrowser:v1.10.0
     user: ${CURRENT_UID}
     volumes:
-      - /opt/platform:/srv
-      - /opt/platform/filebrowser/database.db:/etc/database.db
+      - ${DD_PLATFORM}:/srv
+      - ./config/filebrowser/database.db:/etc/database.db
       - ./config/filebrowser/config.json:/config.json
 
 volumes:

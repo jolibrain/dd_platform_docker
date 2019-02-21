@@ -95,7 +95,7 @@ services:
     user: ${CURRENT_UID}
     volumes:
       - ${DD_PLATFORM}:/srv
-      - ${DD_PLATFORM}/filebrowser/database.db:/etc/database.db
+      - ./config/filebrowser/database.db:/etc/database.db
       - ./config/filebrowser/config.json:/config.json
 
 volumes:
