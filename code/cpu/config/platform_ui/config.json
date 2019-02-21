@@ -9,7 +9,7 @@
       "Welcome to deepdetect"
     ],
     "headerLinks": {
-      "linkJupyter": "http://localhost:1912/code/lab"
+      "linkJupyter": "/code/lab"
     }
   },
   "deepdetect": {
