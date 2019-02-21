@@ -1,0 +1,97 @@
+version: '2.3'
+services:
+
+  #
+  # Platform UI
+  #
+  # Serving react container
+  #
+
+  platform_ui:
+    container_name: jolibrain_platform_ui
+    image: jolibrain/platform_ui:latest
+    restart: always
+    volumes:
+      - platform_ui:/usr/share/nginx/html
+      - ./config/platform_ui/config.json:/usr/share/nginx/html/config.json
+
+  #
+  # Deepdetect
+  #
+
+  deepdetect:
+    container_name: jolibrain_deepdetect
+    image: 'jolibrain/deepdetect_gpu'
+    runtime: nvidia
+    restart: always
+    volumes:
+      - /opt/platform:/opt/platform
+
+  #
+  # nginx
+  #
+  # modify port 80 to change facade port
+  #
+
+  nginx:
+    container_name: jolibrain_nginx
+    image: nginx:latest
+    restart: always
+    ports:
+      - '1912:80'
+    links:
+      - jupyter:jupyter
+      - deepdetect:deepdetect
+      - gpustat_server
+      - filebrowser
+    volumes:
+      - platform_ui:/var/www/html
+      - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - /opt/platform/docs/public:/var/www/html/docs
+      - /opt/platform:/opt/platform
+      - ./config/platform_ui/config.json:/var/www/html/config.json
+
+  #
+  # Jupyter notebooks
+  #
+
+  jupyter:
+    container_name: jolibrain_jupyter
+    environment:
+      - JUPYTER_LAB_ENABLE=yes
+    user: ${CURRENT_UID}
+    image: jolibrain/jupyter_dd_notebook
+    volumes:
+      - /opt/platform:/opt/platform
+      - /opt/platform/notebooks:/home/jovyan/work
+      - ./config/jupyter:/home/jovyan/.jupyter
+
+  #
+  # gpustat-server
+  #
+  gpustat_server:
+    container_name: jolibrain_gpustat_server
+    image:  jolibrain/gpustat_server
+    runtime: nvidia
+
+  #
+  # doc
+  #
+  docs:
+    container_name: jolibrain_docs
+    image:  jolibrain/platform_docs
+
+  #
+  # filebrowser
+  #
+  filebrowser:
+    container_name: jolibrain_filebrowser
+    image: filebrowser/filebrowser:v1.10.0
+    user: ${CURRENT_UID}
+    volumes:
+      - /opt/platform:/srv
+      - /opt/platform/filebrowser/database.db:/etc/database.db
+      - ./config/filebrowser/config.json:/config.json
+
+volumes:
+  platform_ui:
