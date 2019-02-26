@@ -98,5 +98,23 @@ services:
       - ./config/filebrowser/database.db:/etc/database.db
       - ./config/filebrowser/config.json:/config.json
 
+  #
+  # container version monitoring for updates
+  #
+  ouroboros:
+   container_name: jolibrain_ouroboros
+   image: jolibrain/ouroboros
+   user: root
+   environment:
+     - INTERVAL=21600
+     - LOG_LEVEL=info
+     - DRY_RUN=true
+     - FILE_PATH=/opt/version.json
+     - MONITOR="jolibrain/platform_data jolibrain/platform_ui jolibrain/deepdetect_cpu nginx jolibrain/jupyter_dd_notebook filebrowser/filebrowser jolibrain/ouroboros"
+   restart: always
+   volumes:
+     - /var/run/docker.sock:/var/run/docker.sock
+     - ${DD_PLATFORM}:/opt
+
 volumes:
   platform_ui:
