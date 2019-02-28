@@ -4,7 +4,10 @@ export MUID=$(id -u)
 
 # Stop UI containers and clean volumes up
 docker-compose stop platform_ui nginx
-docker-compose rm -v gpu_platform_ui nginx
+docker-compose rm -v -f platform_ui nginx
+
+# Remove named volume
+docker volume rm -f gpu_platform_ui
 
 # Update containers
 docker-compose pull
