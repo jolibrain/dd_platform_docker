@@ -2,6 +2,9 @@
 export CURRENT_UID=$(id -u):$(id -g)
 export MUID=$(id -u)
 
+# Update platform configuration
+git pull
+
 # Stop UI containers and clean volumes up
 docker-compose stop platform_ui nginx
 docker-compose rm -v -f platform_ui nginx
