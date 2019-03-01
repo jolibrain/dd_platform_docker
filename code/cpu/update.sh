@@ -6,7 +6,7 @@ export MUID=$(id -u)
 git pull
 
 # Stop UI containers and clean volumes up
-docker-compose stop platform_ui nginx
+docker-compose stop platform_ui nginx ouroboros
 docker-compose rm -v -f platform_ui nginx
 
 # Remove named volume
