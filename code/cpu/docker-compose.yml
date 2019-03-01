@@ -62,6 +62,7 @@ services:
       - ${DD_PLATFORM}/docs/public:/var/www/html/docs
       - ${DD_PLATFORM}:/opt/platform
       - ./config/platform_ui/config.json:/var/www/html/config.json
+      - ${DD_PLATFORM}/version.json:/var/www/html/version.json
 
   #
   # Jupyter notebooks
