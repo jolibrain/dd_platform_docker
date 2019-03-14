@@ -73,7 +73,7 @@ services:
     container_name: jolibrain_jupyter
     environment:
       - JUPYTER_LAB_ENABLE=yes
-    user: ${CURRENT_UID}
+      - NB_UID=${MUID}
     image: jolibrain/jupyter_dd_notebook
     volumes:
       - ${DD_PLATFORM}:/opt/platform
