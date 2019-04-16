@@ -13,7 +13,7 @@ docker-compose rm -v -f platform_ui nginx
 docker volume rm -f cpu_platform_ui
 
 # Update containers
-docker-compose pull
+docker-compose pull --no-parallel
 
 # Restart with updated containers
 # Warning: this may kill your running jobs
