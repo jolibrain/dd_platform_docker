@@ -138,7 +138,8 @@
   ],
   "dataRepositories": {
     "nginxPath": "/data/",
-    "systemPath": "/opt/platform"
+    "systemPath": "/opt/platform",
+    "maxDepth": 1
   },
   "modals": ["deletePredictService", "stopTraining"],
   "componentBlacklist": ["LinkChat"]
