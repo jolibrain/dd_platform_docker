@@ -94,6 +94,7 @@ services:
   docs:
     container_name: jolibrain_docs
     image:  jolibrain/platform_docs
+    user: ${CURRENT_UID}
 
   #
   # filebrowser
