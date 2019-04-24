@@ -5,6 +5,9 @@ export MUID=$(id -u)
 # Verify that DD_PLATFORM exists, and set it if not
 if [ -z ${DD_PLATFORM} ]; then export DD_PLATFORM=$PWD/../..; fi
 
+# Verify that DD_PLATFORM/version.json file exists, and create it if not
+if [ ! -f ${DD_PLATFORM}/version.json ]; then touch ${DD_PLATFORM}/version.json; fi
+
 # Update platform configuration
 git pull
 
