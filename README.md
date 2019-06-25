@@ -3,17 +3,20 @@
 ## Installation
 
 ```
-# Setup platform directory
+# Setup platform directory and architecture
 export DD_PLATFORM=$HOME/deepdetect
+export ARCH=cpu # gpu also available
 
 # Install platform repository
-git clone https://github.com/jolibrain/dd_platform_docker.git ${DD_PLATFORM}
+git clone https://github.com/jolibrain/dd_platform_docker.git \
+    ${DD_PLATFORM}
 
 # Go to directory
-cd ${DD_PLATFORM}/code/cpu/
+cd ${DD_PLATFORM}/code/${ARCH}/
 
 # Start platform docker containers
-CURRENT_UID=$(id -u):$(id -g) MUID=$(id -u) docker-compose up -d
+CURRENT_UID=$(id -u):$(id -g) MUID=$(id -u) \
+    docker-compose up -d
 
 # Go to http://localhost:1912
 ```

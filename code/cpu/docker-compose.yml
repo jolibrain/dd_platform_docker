@@ -59,7 +59,6 @@ services:
     volumes:
       - platform_ui:/var/www/html
       - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ${DD_PLATFORM}/docs/public:/var/www/html/docs
       - ${DD_PLATFORM}:/opt/platform
       - ./config/platform_ui/config.json:/var/www/html/config.json
       - ${DD_PLATFORM}/version.json:/var/www/html/version.json
@@ -78,14 +77,6 @@ services:
       - ${DD_PLATFORM}:/opt/platform
       - ${DD_PLATFORM}/notebooks:/home/jovyan/work
       - ./config/jupyter:/home/jovyan/.jupyter
-
-  #
-  # doc
-  #
-  docs:
-    container_name: jolibrain_docs
-    image:  jolibrain/platform_docs
-    user: ${CURRENT_UID}
 
   #
   # filebrowser
