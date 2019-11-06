@@ -23,7 +23,8 @@
         "settings": {
           "path": "/api/deepdetect",
           "isHostable": true,
-          "isWritable": true
+          "isWritable": true,
+          "sameOrigin": true
         }
       }
     ],
@@ -77,35 +78,18 @@
         "best": false,
         "ctc": false,
         "blank_label": false
+      },
+      "code": {
+        "display": {
+          "importLib": true,
+          "ddConfig": true,
+          "postPredict": true,
+          "hostname": null,
+          "port": null
+        }
       }
     },
     "services": [
-      {
-        "name": "testService",
-        "settings": {
-          "display": {
-            "initImages": {},
-            "mode": "description",
-            "okClass": "",
-            "boundingBox": true,
-            "segmentation": false,
-            "separateSegmentation": false,
-            "segmentationColors": ["#1b9e77", "#d95f02"]
-          },
-          "threshold": {
-            "confidence": 0.5,
-            "controls": true,
-            "controlSteps": [0.8, 0.5, 0.3]
-          },
-          "request": {
-            "objSearch": false,
-            "imgSearch": false,
-            "best": false,
-            "ctc": false,
-            "blank_label": false
-          }
-        }
-      }
     ]
   },
   "gpuInfo": {
