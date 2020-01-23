@@ -28,6 +28,9 @@
         }
       }
     ],
+    "chain": {
+      "path": "/chains/"
+    },
     "services": {
       "defaultConfig": [
         {
