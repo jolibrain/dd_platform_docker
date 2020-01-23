@@ -28,7 +28,7 @@
         }
       }
     ],
-    "chain": {
+    "chains": {
       "path": "/chains/"
     },
     "services": {
