@@ -3,7 +3,8 @@
 ## Installation
 
 ```
-# Setup platform directory and architecture
+# Setup platform project name, directory and architecture
+export PROJECT_NAME=dd_platform
 export DD_PLATFORM=$HOME/deepdetect
 export ARCH=cpu # gpu also available
 
@@ -16,7 +17,7 @@ cd ${DD_PLATFORM}/code/${ARCH}/
 
 # Start platform docker containers
 CURRENT_UID=$(id -u):$(id -g) MUID=$(id -u) \
-    docker-compose up -d
+    docker-compose up -d -p $PROJECT_NAME
 
 # Go to http://localhost:1912
 ```
