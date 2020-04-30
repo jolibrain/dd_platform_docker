@@ -8,7 +8,6 @@ services:
   #
 
   platform_data:
-    container_name: jolibrain_platform_data
     image: jolibrain/platform_data:latest
     user: ${CURRENT_UID}
     volumes:
@@ -21,7 +20,6 @@ services:
   #
 
   platform_ui:
-    container_name: jolibrain_platform_ui
     image: jolibrain/platform_ui:latest
     restart: always
     volumes:
@@ -33,7 +31,6 @@ services:
   #
 
   deepdetect:
-    container_name: jolibrain_deepdetect
     image: 'jolibrain/deepdetect_cpu'
     restart: always
     user: ${CURRENT_UID}
@@ -47,7 +44,6 @@ services:
   #
 
   nginx:
-    container_name: jolibrain_nginx
     image: nginx:latest
     restart: always
     ports:
@@ -68,7 +64,6 @@ services:
   #
 
   jupyter:
-    container_name: jolibrain_jupyter
     environment:
       - JUPYTER_LAB_ENABLE=yes
       - NB_UID=${MUID}
@@ -82,7 +77,6 @@ services:
   # filebrowser
   #
   filebrowser:
-    container_name: jolibrain_filebrowser
     image: filebrowser/filebrowser:v1.10.0
     restart: always
     user: ${CURRENT_UID}
@@ -95,7 +89,6 @@ services:
   # container version monitoring for updates
   #
   ouroboros:
-   container_name: jolibrain_ouroboros
    image: jolibrain/ouroboros
    user: root
    environment:
