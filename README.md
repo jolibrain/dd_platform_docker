@@ -17,7 +17,7 @@ cd ${DD_PLATFORM}/code/${ARCH}/
 
 # Start platform docker containers
 CURRENT_UID=$(id -u):$(id -g) MUID=$(id -u) \
-    docker-compose up -d -p $PROJECT_NAME
+    docker-compose -p $PROJECT_NAME up -d
 
 # Go to http://localhost:1912
 ```
