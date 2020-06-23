@@ -2,7 +2,7 @@
 
 script="update.sh"
 #Declare the number of mandatory args
-margs=1
+margs=0
 
 # Common functions - BEGIN
 function example {
