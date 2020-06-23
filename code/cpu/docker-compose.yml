@@ -89,18 +89,29 @@ services:
   # container version monitoring for updates
   #
   ouroboros:
-   image: jolibrain/ouroboros
-   user: root
-   environment:
-     - INTERVAL=21600
-     - LOG_LEVEL=info
-     - DRY_RUN=true
-     - FILE_PATH=/opt/version.json
-     - MONITOR="jolibrain/platform_data jolibrain/platform_ui jolibrain/deepdetect_cpu nginx jolibrain/jupyter_dd_notebook filebrowser/filebrowser jolibrain/ouroboros"
-   restart: always
-   volumes:
-     - /var/run/docker.sock:/var/run/docker.sock
-     - ${DD_PLATFORM}:/opt
+    image: jolibrain/ouroboros
+    user: root
+    environment:
+      - INTERVAL=21600
+      - LOG_LEVEL=info
+      - DRY_RUN=true
+      - FILE_PATH=/opt/version.json
+      - MONITOR="jolibrain/platform_data jolibrain/platform_ui jolibrain/deepdetect_cpu nginx jolibrain/jupyter_dd_notebook filebrowser/filebrowser jolibrain/ouroboros"
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${DD_PLATFORM}:/opt
+
+  #
+  # real-time log viewer for docker containers
+  #
+  dozzle:
+    image: amir20/dozzle
+    restart: always
+    environment:
+      - DOZZLE_BASE=/docker-logs
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
 
 volumes:
   platform_ui:
