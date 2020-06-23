@@ -6,18 +6,20 @@ margs=1
 
 # Common functions - BEGIN
 function example {
-    echo -e "example: $script -p PROJECT_NAME"
+    echo -e "example with *${PWD##*/}* project name: ./$script -p ${PWD##*/}\n"
 }
 
 function usage {
-    echo -e "usage: $script MANDATORY [OPTION]\n"
+    echo -e "usage: ./$script [OPTIONS]\n"
 }
 
 function help {
   usage
-    echo -e "MANDATORY:"
-    echo -e "  -p, --project-name PROJECT_NAME Project name used for this docker-compose installation"
-    echo -e "OPTION:"
+    echo -e "OPTIONS:"
+    echo -e ""
+    echo -e "  -p, --project-name PROJECT_NAME Project name used for this docker-compose installation."
+    echo -e "                                  Default: ${PWD##*/}"
+    echo -e ""
     echo -e "  -h, --help                      Prints this help\n"
   example
 }
@@ -51,14 +53,14 @@ function margs_check {
 # Main
 margs_precheck $# $1
 
-project_name=
+COMPOSE_PROJECT_NAME=${PWD##*/}
 
 # Args while-loop
 while [ "$1" != "" ];
 do
     case $1 in
         -p  | --project-name )  shift
-                               project_name=$1
+                               COMPOSE_PROJECT_NAME=$1
                                ;;
         -h   | --help )        help
                                exit
@@ -74,7 +76,7 @@ do
 done
 
 # Pass here your mandatory args for check
-margs_check $project_name
+margs_check $COMPOSE_PROJECT_NAME
 
 export CURRENT_UID=$(id -u):$(id -g)
 export MUID=$(id -u)
@@ -93,19 +95,22 @@ docker-compose stop platform_ui nginx ouroboros
 docker-compose rm -v -f platform_ui nginx
 
 # Remove named volume
-docker_platform_name=${project_name}_platform_ui
-if [[  $(docker ps --filter "name=^/$docker_platform_name$" --format '{{.Names}}') == $docker_platform_name ]];
+docker_platform_name=${COMPOSE_PROJECT_NAME}_platform_ui
+if [[ $(docker volume ls --filter "name=$docker_platform_name" --format '{{.Name}}') == $docker_platform_name* ]];
 then
-    docker volume rm -f ${project_name}_platform_ui ;
+    docker volume rm -f $docker_platform_name ;
 else
-    echo -e "WARNING: ${project_name}_platform_ui docker container is not running."
-    echo -e "Please verify the project name ${project_name} parameter and the current running containers."
-    echo -e "Command to check running docker container:"
-    echo -e "docker ps --format '{{.Names}}'\n"
+    echo -e ""
+    echo -e "WARNING: ${docker_platform_name} docker volume is not available."
+    echo -e ""
+    echo -e "Please verify the project name *${COMPOSE_PROJECT_NAME}* parameter and the existing volumes."
+    echo -e ""
+    echo -e "Command to check existing volumes: docker volume ls --format '{{.Name}}'"
+    echo -e ""
 fi
 
 # Update containers
 docker-compose pull --no-parallel nginx platform_ui
 
 # Restart with updated containers
-docker-compose up -d -p $project_name nginx platform_ui
+docker-compose up -d nginx platform_ui
