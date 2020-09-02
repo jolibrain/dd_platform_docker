@@ -13,18 +13,6 @@ services:
     volumes:
       - ${DD_PLATFORM}:/platform
 
-  #
-  # Platform UI
-  #
-  # Serving react container
-  #
-
-  platform_ui:
-    image: jolibrain/platform_ui:latest
-    restart: always
-    volumes:
-      - platform_ui:/usr/share/nginx/html
-      - ./config/platform_ui/config.json:/usr/share/nginx/html/config.json
 
   #
   # Deepdetect
@@ -55,11 +43,10 @@ services:
       - filebrowser
       - dozzle
     volumes:
-      - platform_ui:/var/www/html
       - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
       - ${DD_PLATFORM}:/opt/platform
-      - ./config/platform_ui/config.json:/var/www/html/config.json
-      - ${DD_PLATFORM}/version.json:/var/www/html/version.json
+      - ./config/platform_ui/config.json:/usr/share/nginx/html/config.json
+      - ${DD_PLATFORM}/version.json:/usr/share/nginx/html/version.json
 
   #
   # Jupyter notebooks

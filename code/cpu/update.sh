@@ -91,26 +91,12 @@ if [ ! -f ${DD_PLATFORM}/version.json ]; then touch ${DD_PLATFORM}/version.json;
 git pull
 
 # Stop UI containers and clean volumes up
-docker-compose stop platform_ui nginx ouroboros
-docker-compose rm -v -f platform_ui nginx
+docker-compose pull --no-parallel platform_ui
+docker-compose up -d --remove-orphans
 
-# Remove named volume
+# Remove legacy named volume
 docker_platform_name=${COMPOSE_PROJECT_NAME}_platform_ui
 if [[ $(docker volume ls --filter "name=$docker_platform_name" --format '{{.Name}}') == $docker_platform_name* ]];
 then
     docker volume rm -f $docker_platform_name ;
-else
-    echo -e ""
-    echo -e "WARNING: ${docker_platform_name} docker volume is not available."
-    echo -e ""
-    echo -e "Please verify the project name *${COMPOSE_PROJECT_NAME}* parameter and the existing volumes."
-    echo -e ""
-    echo -e "Command to check existing volumes: docker volume ls --format '{{.Name}}'"
-    echo -e ""
 fi
-
-# Update containers
-docker-compose pull --no-parallel nginx platform_ui
-
-# Restart with updated containers
-docker-compose up -d nginx platform_ui
