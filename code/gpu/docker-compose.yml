@@ -53,6 +53,7 @@ services:
       - deepdetect:deepdetect
       - gpustat_server
       - filebrowser
+      - dozzle
     volumes:
       - platform_ui:/var/www/html
       - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
