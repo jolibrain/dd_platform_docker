@@ -7,8 +7,8 @@ pipeline {
 
   stages {
 
-    timeout(time: 2, unit: 'MINUTES') {
-      stage('Start CPU') {
+    stage('Start CPU') {
+      timeout(time: 2, unit: 'MINUTES') {
         steps {
           waitUntil {
             try {
@@ -25,8 +25,8 @@ pipeline {
       }
     }
 
-    timeout(time: 2, unit: 'MINUTES') {
-      stage('Start GPU') {
+    stage('Start GPU') {
+      timeout(time: 2, unit: 'MINUTES') {
         steps {
           waitUntil {
             try {
