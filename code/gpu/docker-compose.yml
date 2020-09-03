@@ -47,7 +47,7 @@ services:
     image: nginx:latest
     restart: always
     ports:
-      - '1912:80'
+      - '${DD_PORT:-1912}:80'
     links:
       - jupyter:jupyter
       - deepdetect:deepdetect
