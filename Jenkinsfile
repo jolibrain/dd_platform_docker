@@ -5,12 +5,12 @@ pipeline {
     CHECK_URL = "http://localhost:1912"
   }
 
+  options {
+    timeout(time: 10, unit: "MINUTES")
+  }
   stages {
 
     stage('Start CPU') {
-      options {
-        timeout(time: 2, unit: "MINUTES")
-      }
 
       steps {
         script {
@@ -36,9 +36,6 @@ pipeline {
     }
 
     stage('Start GPU') {
-      options {
-        timeout(time: 2, unit: "MINUTES")
-      }
 
       steps {
         script {
