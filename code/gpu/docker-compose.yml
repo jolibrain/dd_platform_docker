@@ -26,13 +26,13 @@ services:
       - ${DD_PLATFORM}:/opt/platform
 
   #
-  # nginx
+  # Platform UI
   #
   # modify port 80 to change facade port
   #
 
-  nginx:
-    image: nginx:latest
+  platform_ui:
+    image: jolibrain/platform_ui:latest
     restart: always
     ports:
       - '${DD_PORT:-1912}:80'
