@@ -106,6 +106,3 @@ services:
       - DOZZLE_BASE=/docker-logs
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-
-volumes:
-  platform_ui:
