@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e
+set -x
 set -o pipefail
 
 export MODE=$1
