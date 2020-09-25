@@ -1,2 +1,7 @@
 code/cpu/config/filebrowser/database.db
 code/gpu/config/filebrowser/database.db
+data/
+notebooks/
+models/
+examples/
+.DS_Store
