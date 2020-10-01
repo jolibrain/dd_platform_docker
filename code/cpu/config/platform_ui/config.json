@@ -103,10 +103,6 @@
   },
   "gpuInfo": {
     "servers": [
-      {
-        "name": "GPU Stats",
-        "url": "/gpu/stats"
-      }
     ],
     "refreshRate": 5000
   },
