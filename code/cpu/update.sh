@@ -92,7 +92,7 @@ git pull
 
 # Stop UI containers and clean volumes up
 docker-compose pull --no-parallel platform_ui
-docker-compose up -d --remove-orphans
+docker-compose -p $COMPOSE_PROJECT_NAME up -d --remove-orphans
 
 # Remove legacy named volume
 docker_platform_name=${COMPOSE_PROJECT_NAME}_platform_ui
