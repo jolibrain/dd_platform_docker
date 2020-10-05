@@ -62,6 +62,9 @@ do
         -p  | --project-name )  shift
                                COMPOSE_PROJECT_NAME=$1
                                ;;
+        --platform-ui-only )  shift
+                               PLATFORM_UI_ONLY=1
+                               ;;
         -h   | --help )        help
                                exit
                                ;;
@@ -92,10 +95,17 @@ git pull
 
 # Stop UI containers and clean volumes up
 docker-compose pull --no-parallel platform_ui
-docker-compose -p $COMPOSE_PROJECT_NAME up -d --remove-orphans
+
+if [ -z ${PLATFORM_UI_ONLY} ]; then
+  # restart all platform containers
+  docker-compose -p $COMPOSE_PROJECT_NAME up -d --remove-orphans
+else
+  # only restart platform_ui
+  docker-compose -p $COMPOSE_PROJECT_NAME up -d --no-deps platform_ui
+fi
 
 # Remove legacy named volume
-docker_platform_name=${COMPOSE_PROJECT_NAME}_platform_ui
+docker_platform_name="${COMPOSE_PROJECT_NAME}_platform_ui"
 if [[ $(docker volume ls --filter "name=$docker_platform_name" --format '{{.Name}}') == $docker_platform_name* ]];
 then
     docker volume rm -f $docker_platform_name ;
