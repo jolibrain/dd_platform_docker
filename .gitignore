@@ -2,3 +2,4 @@ code/cpu/config/filebrowser/database.db
 code/gpu/config/filebrowser/database.db
 notebooks/
 models/
+examples/
