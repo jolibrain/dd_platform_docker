@@ -55,11 +55,10 @@ services:
     environment:
       - JUPYTER_LAB_ENABLE=yes
       - NB_UID=${MUID}
-    image: jolibrain/jupyter_dd_notebook
+    image: jolibrain/jupyter_dd_notebook:${DD_JUPYTER_TAG:-latest}
     volumes:
       - ${DD_PLATFORM}:/opt/platform
       - ${DD_PLATFORM}/notebooks:/home/jovyan/work
-      - ./config/jupyter:/home/jovyan/.jupyter
 
   #
   # filebrowser
