@@ -4,12 +4,25 @@ set -e
 set -x
 set -o pipefail
 
+PR_NUMBER=$(echo $GIT_BRANCH | sed -n '/^PR-/s/PR-//gp')
+if [ "$TAG_NAME" ]; then
+    TMP_TAG="ci-$TAG_NAME"
+elif [ "$GIT_BRANCH" == "master" ]; then
+    TMP_TAG="ci-$GIT_BRANCH"
+elif [ "$PR_NUMBER" ]; then
+    TMP_TAG=ci-pr-$PR_NUMBER
+else
+    # Not built with Jenkins
+    TMP_TAG="dev"
+fi
+
+
 export MODE=$1
 export DD_PLATFORM=$PWD
 export DD_PORT=50000-50100
+export DD_JUPYTER_TAG=${TMP_TAG}
 export CURRENT_UID=$(id -u):$(id -g)
 export MUID=$(id -u)
-
 PROJECT=jenkins-test-${RANDOM}
 
 cd code/$MODE/

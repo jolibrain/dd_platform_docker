@@ -9,7 +9,11 @@ pipeline {
     timeout(time: 10, unit: "MINUTES")
   }
   stages {
-
+    stage('Build jupiter') {
+      steps {
+        sh 'jupyter/build-jupyter.sh'
+      }
+    }
     stage('Start CPU') {
 
       steps {
