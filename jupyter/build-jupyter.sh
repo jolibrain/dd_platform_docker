@@ -15,8 +15,9 @@ else
     TMP_TAG="dev"
 fi
 
-# Build it
-docker build -t jolibrain/jupyter_dd_notebook:$TMP_TAG .
+image_url=jolibrain/jupyter_dd_notebook
+
+docker build -t $image_url:$TMP_TAG .
 
 if [ "$TMP_TAG" != "dev" ]; then
     #docker tag $image_url:$TMP_TAG ceres:5000/$image_url:$TMP_TAG
