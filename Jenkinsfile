@@ -9,9 +9,9 @@ pipeline {
     timeout(time: 10, unit: "MINUTES")
   }
   stages {
-    stage('Build jupiter') {
+    stage('Build jupiter and filebrowser') {
       steps {
-        sh 'jupyter/build-jupyter.sh'
+        sh 'ci/build-docker-images.sh'
       }
     }
     stage('Start CPU') {
