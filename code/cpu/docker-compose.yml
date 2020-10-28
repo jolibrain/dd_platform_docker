@@ -53,6 +53,7 @@ services:
 
   jupyter:
     image: jolibrain/jupyter_dd_notebook:${DD_JUPYTER_TAG:-latest}
+    user: root
     environment:
       - JUPYTER_LAB_ENABLE=yes
       - NB_UID=${MUID}
