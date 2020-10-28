@@ -1,7 +1,5 @@
-code/cpu/config/filebrowser/database.db
-code/gpu/config/filebrowser/database.db
 code/widgets/
+data/
 notebooks/
 models/
 examples/
-jupiter/gpu-jupyter

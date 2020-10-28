@@ -53,10 +53,10 @@ services:
   #
 
   jupyter:
+    image: jolibrain/jupyter_dd_notebook:${DD_JUPYTER_TAG:-latest}
     environment:
       - JUPYTER_LAB_ENABLE=yes
       - NB_UID=${MUID}
-    image: jolibrain/jupyter_dd_notebook:${DD_JUPYTER_TAG:-latest}
     volumes:
       - ${DD_PLATFORM}:/opt/platform
       - ${DD_PLATFORM}/notebooks:/home/jovyan/work
@@ -72,18 +72,18 @@ services:
   # filebrowser
   #
   filebrowser:
-    image: filebrowser/filebrowser:v1.10.0
+    image: jolibrain/filebrowser:${DD_FILEBROWSER_TAG:-latest}
+    restart: always
     user: ${CURRENT_UID}
     volumes:
-      - ${DD_PLATFORM}:/srv
-      - ./config/filebrowser/database.db:/etc/database.db
-      - ./config/filebrowser/config.json:/config.json
+      - ${DD_PLATFORM}/data:/srv/data
 
   #
   # container version monitoring for updates
   #
   ouroboros:
     image: jolibrain/ouroboros
+    user: root
     environment:
       - INTERVAL=21600
       - LOG_LEVEL=info

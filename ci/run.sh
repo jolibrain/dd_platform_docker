@@ -21,6 +21,7 @@ export MODE=$1
 export DD_PLATFORM=$PWD
 export DD_PORT=50000-50100
 export DD_JUPYTER_TAG=${TMP_TAG}
+export DD_FILEBROWSER_TAG=${TMP_TAG}
 export CURRENT_UID=$(id -u):$(id -g)
 export MUID=$(id -u)
 PROJECT=jenkins-test-${RANDOM}
