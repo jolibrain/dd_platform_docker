@@ -31,8 +31,8 @@ sed -ne "/^## $tag/,/^##.*202/p" CHANGELOG.md | sed -e '$d' -e '1d' > note.md.tm
 cat > note.md <<EOF
 ### Versions:
 
-* DeepDetect Server C++ and REST API: $dd_server_version
-* DeepDetect Platform UI: $dd_platform_ui_version
+* DeepDetect Server C++ and REST API: [$dd_server_version](https://github.com/jolibrain/deepdetect/releases/tag/v0.11.0)
+* DeepDetect Platform UI: [$dd_platform_ui_version](https://github.com/jolibrain/platform_ui/releases/tag/v0.10.0)
 * All docker images available on https://hub.docker.com/u/jolibrain
 EOF
 cat note.md.tmp >> note.md
