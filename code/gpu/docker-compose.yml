@@ -19,7 +19,7 @@ services:
   #
 
   deepdetect:
-    image: jolibrain/deepdetect_gpu:${DD_SERVER_TAG:-latest}
+    image: jolibrain/deepdetect_cpu:${DD_SERVER_TAG}
     runtime: nvidia
     restart: always
     volumes:
@@ -32,7 +32,7 @@ services:
   #
 
   platform_ui:
-      image: jolibrain/platform_ui:${DD_PLATFORM_UI_TAG:-latest}
+    image: jolibrain/platform_ui:${DD_PLATFORM_UI_TAG}
     restart: always
     ports:
       - '${DD_PORT:-1912}:80'
@@ -53,7 +53,7 @@ services:
   #
 
   jupyter:
-    image: jolibrain/jupyter_dd_notebook:${DD_JUPYTER_TAG:-latest}
+    image: jolibrain/jupyter_dd_notebook:${DD_JUPYTER_TAG}
     user: root
     environment:
       - JUPYTER_LAB_ENABLE=yes
@@ -73,7 +73,7 @@ services:
   # filebrowser
   #
   filebrowser:
-    image: jolibrain/filebrowser:${DD_FILEBROWSER_TAG:-latest}
+    image: jolibrain/filebrowser:${DD_FILEBROWSER_TAG}
     restart: always
     user: ${CURRENT_UID}
     volumes:
@@ -90,7 +90,7 @@ services:
       - LOG_LEVEL=info
       - DRY_RUN=true
       - FILE_PATH=/opt/version.json
-      - MONITOR="jolibrain/platform_data jolibrain/platform_ui jolibrain/deepdetect_gpu nginx jolibrain/jupyter_dd_notebook filebrowser/filebrowser jolibrain/gpustat_server jolibrain/ouroboros"
+      - MONITOR="jolibrain/platform_data jolibrain/platform_ui jolibrain/deepdetect_gpu jolibrain/jupyter_dd_notebook filebrowser/filebrowser jolibrain/gpustat_server jolibrain/ouroboros"
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock

@@ -19,7 +19,7 @@ services:
   #
 
   deepdetect:
-    image: jolibrain/deepdetect_cpu:${DD_SERVER_TAG:-latest}
+    image: jolibrain/deepdetect_cpu:${DD_SERVER_TAG}
     restart: always
     user: ${CURRENT_UID}
     volumes:
@@ -32,7 +32,7 @@ services:
   #
 
   platform_ui:
-      image: jolibrain/platform_ui:${DD_PLATFORM_UI_TAG:-latest}
+    image: jolibrain/platform_ui:${DD_PLATFORM_UI_TAG}
     restart: always
     ports:
       - '${DD_PORT:-1912}:80'
@@ -52,7 +52,7 @@ services:
   #
 
   jupyter:
-    image: jolibrain/jupyter_dd_notebook:${DD_JUPYTER_TAG:-latest}
+    image: jolibrain/jupyter_dd_notebook:${DD_JUPYTER_TAG}
     user: root
     environment:
       - JUPYTER_LAB_ENABLE=yes
@@ -65,7 +65,7 @@ services:
   # filebrowser
   #
   filebrowser:
-    image: jolibrain/filebrowser:${DD_FILEBROWSER_TAG:-latest}
+    image: jolibrain/filebrowser:${DD_FILEBROWSER_TAG}
     restart: always
     user: ${CURRENT_UID}
     volumes:
