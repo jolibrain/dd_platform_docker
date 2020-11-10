@@ -111,3 +111,17 @@ In `gpuInfo.servers` array, add the following item:
   "url": "/gpu/ENDPOINT"
 }
 ```
+
+## Configuration of docker image versions
+
+Docker-compose uses the `latest` tag for all docker images that correspond to
+the latest stable version.
+
+You can select the wanted version with these following environment variables:
+
+```
+DD_SERVER_TAG=latest
+DD_PLATFORM_UI_TAG=latest
+DD_JUPYTER_TAG=latest
+DD_FILEBROWSER_TAG=latest
+```
