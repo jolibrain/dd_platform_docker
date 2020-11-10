@@ -19,7 +19,7 @@ services:
   #
 
   deepdetect:
-    image: 'jolibrain/deepdetect_gpu'
+    image: jolibrain/deepdetect_gpu:${DD_SERVER_TAG:-latest}
     runtime: nvidia
     restart: always
     volumes:
@@ -32,7 +32,7 @@ services:
   #
 
   platform_ui:
-    image: jolibrain/platform_ui:latest
+      image: jolibrain/platform_ui:${DD_PLATFORM_UI_TAG:-latest}
     restart: always
     ports:
       - '${DD_PORT:-1912}:80'
