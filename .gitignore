@@ -3,3 +3,4 @@ data/
 notebooks/
 models/
 examples/
+node_modules/

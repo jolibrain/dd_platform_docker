@@ -1,0 +1,14 @@
+{
+  "name": "deepdetect-platform",
+  "description": "Open Source Deep Learning Platform",
+  "version": "0.10.0",
+  "devDependencies": {
+    "standard-version": "^9.0.0"
+  },
+  "standard-version": {
+    "header": "# DeepDetect: Open Source Deep Learning Platform (Changelog)\n",
+    "scripts": {
+      "postchangelog": "sed -i -e '/\\*\\*ci:\\*\\*/d' CHANGELOG.md"
+    }
+  }
+}
