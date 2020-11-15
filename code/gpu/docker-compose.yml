@@ -19,7 +19,7 @@ services:
   #
 
   deepdetect:
-    image: jolibrain/deepdetect_cpu:${DD_SERVER_TAG}
+    image: jolibrain/deepdetect_gpu:${DD_SERVER_TAG}
     runtime: nvidia
     restart: always
     volumes:
