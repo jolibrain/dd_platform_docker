@@ -125,3 +125,12 @@ DD_PLATFORM_UI_TAG=latest
 DD_JUPYTER_TAG=latest
 DD_FILEBROWSER_TAG=latest
 ```
+
+## Allow direct connection to deepdetect API
+
+You can add to deepdetect container of `code/gpu/docker-compose.yml`:
+
+```
+    ports:
+      - "127.0.0.0:12345:8080"
+```
