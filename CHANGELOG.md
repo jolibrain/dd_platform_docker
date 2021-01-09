@@ -1,5 +1,20 @@
 # DeepDetect: Open Source Deep Learning Platform (Changelog)
 
+## 0.12.0 (2021-01-09)
+
+
+### Features
+
+* **deepdetect:** upgrade to v0.12.0 ([a96b7e8](https://github.com/jolibrain/dd_platform_docker/commit/a96b7e8e50256dbc3a1c2fd2c2f41023d6efcc70))
+* **platform_ui:** upgrade to v0.11.0 ([3b2054f](https://github.com/jolibrain/dd_platform_docker/commit/3b2054f662e80dece33bfa206b9a99256349a36d))
+* allow jupyter to access to GPUs ([f146ab9](https://github.com/jolibrain/dd_platform_docker/commit/f146ab92adc878167f65861a1de01e5e0bea328f))
+
+
+### Bug Fixes
+
+* add /docker-tags nginx location to list available platorm_ui images on dockerhub, and eventually notify about possible update ([64277a4](https://github.com/jolibrain/dd_platform_docker/commit/64277a41cfb2115c5291fe24f5a8146bcc381b90))
+* gpu platform had cpu deepdetect ([c3307a3](https://github.com/jolibrain/dd_platform_docker/commit/c3307a33287f0f97c13ad49b35501a6bc8d7f41c))
+
 ## 0.11.0 (2020-11-10)
 
 
