@@ -1,5 +1,13 @@
 # DeepDetect: Open Source Deep Learning Platform (Changelog)
 
+## 0.13.0 (2021-02-03)
+
+
+### Features
+
+* **deepdetect:** upgrade to v0.13.0 ([7a3b808](https://github.com/jolibrain/dd_platform_docker/commit/7a3b80847b8a1a36dd2af2331fda67363a5ee01e))
+* **platform_ui:** upgrade to v0.13.0 ([b9904c1](https://github.com/jolibrain/dd_platform_docker/commit/b9904c17f15f09557407ae7a5c2ffa688dd6e4bd))
+
 ## 0.12.0 (2021-01-09)
 
 
