@@ -1,13 +1,7 @@
 # DeepDetect Jupiter docker image
 
-To build an image just run:
+The docker image is rebuild on each commit
 
 ```
-./build-jupyter.sh
-```
-
-Test it with:
-
-```
-docker run --rm -d --name my-jupyter jolibrain/jupyter_dd_notebook:dev
+docker run --rm -d --name my-jupyter jolibrain/jupyter_dd_notebook:latest
 ```
