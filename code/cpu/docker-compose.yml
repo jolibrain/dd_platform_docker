@@ -19,7 +19,7 @@ services:
   #
 
   deepdetect:
-    image: jolibrain/deepdetect_cpu:${DD_SERVER_TAG}
+    image: jolibrain/deepdetect_${DD_SERVER_IMAGE}:${DD_SERVER_TAG}
     restart: always
     user: ${CURRENT_UID}
     volumes:
