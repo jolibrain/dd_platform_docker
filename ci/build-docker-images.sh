@@ -34,7 +34,7 @@ for dir in ${!images[@]}; do
     fi
 
     cd $here/../$dir
-    docker build --no-cache -t $image_url:$TMP_TAG .
+    docker build --pull --no-cache -t $image_url:$TMP_TAG .
 
     if [ "$TMP_TAG" != "dev" ]; then
         #docker tag $image_url:$TMP_TAG ceres:5000/$image_url:$TMP_TAG
