@@ -42,7 +42,7 @@ PORT=$(docker port "${PROJECT}_platform_ui_1" 80/tcp | awk -F: '{print $2}')
 
 timeout 60 sh -c "until nc -z localhost $PORT; do sleep 1; done"
 
-sleep 15
+sleep 30
 
 curl -s --head --request GET localhost:$PORT | head -1 | grep 'HTTP/1.1 200'
 curl -s --head --request GET http://localhost:$PORT/api/deepdetect/info | head -1 | grep 'HTTP/1.1 200'
