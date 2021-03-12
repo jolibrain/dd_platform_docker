@@ -1,0 +1,127 @@
+version: '3.8'
+services:
+
+  #
+  # Platform Data
+  #
+  # Get data from dockerhub to run various services
+  #
+
+  platform_data:
+    image: jolibrain/platform_data:latest
+    user: ${CURRENT_UID}
+    volumes:
+      - ${DD_PLATFORM}:/platform
+
+
+  #
+  # Deepdetect
+  #
+
+  deepdetect:
+    image: jolibrain/deepdetect_${DD_SERVER_IMAGE}:${DD_SERVER_TAG}
+    restart: always
+    volumes:
+      - ${DD_PLATFORM}:/opt/platform
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            count: all
+            capabilities: [gpu, utility]
+
+  #
+  # Platform UI
+  #
+  # modify port 80 to change facade port
+  #
+
+  platform_ui:
+    image: jolibrain/platform_ui:${DD_PLATFORM_UI_TAG}
+    restart: always
+    ports:
+      - '${DD_PORT:-1912}:80'
+    links:
+      - jupyter:jupyter
+      - deepdetect:deepdetect
+      - gpustat_server
+      - filebrowser
+      - dozzle
+    volumes:
+      - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ${DD_PLATFORM}:/opt/platform
+      - ./config/platform_ui/config.json:/usr/share/nginx/html/config.json
+      - ./.env:/usr/share/nginx/html/version
+
+  #
+  # Jupyter notebooks
+  #
+
+  jupyter:
+    image: jolibrain/jupyter_dd_notebook:${DD_JUPYTER_TAG}
+    user: root
+    environment:
+      - JUPYTER_LAB_ENABLE=yes
+      - NB_UID=${MUID}
+    volumes:
+      - ${DD_PLATFORM}:/opt/platform
+      - ${DD_PLATFORM}/notebooks:/home/jovyan/work
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            count: all
+            capabilities: [gpu, utility]
+
+  #
+  # gpustat-server
+  #
+  gpustat_server:
+    image:  jolibrain/gpustat_server
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            count: all
+            capabilities: [gpu, utility]
+
+  #
+  # filebrowser
+  #
+  filebrowser:
+    image: jolibrain/filebrowser:${DD_FILEBROWSER_TAG}
+    restart: always
+    user: ${CURRENT_UID}
+    volumes:
+      - ${DD_PLATFORM}/data:/srv/data
+
+  #
+  # container version monitoring for updates
+  #
+  ouroboros:
+    image: jolibrain/ouroboros
+    user: root
+    environment:
+      - INTERVAL=21600
+      - LOG_LEVEL=info
+      - DRY_RUN=true
+      - FILE_PATH=/opt/version.json
+      - MONITOR="jolibrain/platform_data jolibrain/platform_ui jolibrain/deepdetect_gpu jolibrain/jupyter_dd_notebook filebrowser/filebrowser jolibrain/gpustat_server jolibrain/ouroboros"
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${DD_PLATFORM}:/opt
+
+  #
+  # real-time log viewer for docker containers
+  #
+  dozzle:
+    image: amir20/dozzle
+    restart: always
+    environment:
+      - DOZZLE_BASE=/docker-logs
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
