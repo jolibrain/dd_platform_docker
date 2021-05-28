@@ -139,6 +139,6 @@
     "maxDepth": 1
   },
   "modals": ["deletePredictService", "stopTraining"],
-  "componentBlacklist": ["LinkChat"],
+  "componentBlacklist": ["LinkChat", "LinkVideoExplorer"],
   "placeholders": {}
 }
