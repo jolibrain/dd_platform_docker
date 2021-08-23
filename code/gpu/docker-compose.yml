@@ -81,23 +81,6 @@ services:
       - ${DD_PLATFORM}/data:/srv/data
 
   #
-  # container version monitoring for updates
-  #
-  ouroboros:
-    image: jolibrain/ouroboros
-    user: root
-    environment:
-      - INTERVAL=21600
-      - LOG_LEVEL=info
-      - DRY_RUN=true
-      - FILE_PATH=/opt/version.json
-      - MONITOR="jolibrain/platform_data jolibrain/platform_ui jolibrain/deepdetect_gpu jolibrain/jupyter_dd_notebook filebrowser/filebrowser jolibrain/gpustat_server jolibrain/ouroboros"
-    restart: always
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ${DD_PLATFORM}:/opt
-
-  #
   # real-time log viewer for docker containers
   #
   dozzle:
