@@ -4,7 +4,7 @@
   "private": true,
   "version": "0.18.0",
   "devDependencies": {
-    "standard-version": "^9.0.0"
+    "standard-version": "^9.3.1"
   },
   "standard-version": {
     "header": "# DeepDetect: Open Source Deep Learning Platform (Changelog)\n",
