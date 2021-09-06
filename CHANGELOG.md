@@ -1,14 +1,15 @@
 # DeepDetect: Open Source Deep Learning Platform (Changelog)
 
-## [0.18.0](https://github.com/jolibrain/dd_platform_docker/compare/v0.17.0...v0.18.0) (2021-06-11)
+## [0.19.0](https://github.com/jolibrain/dd_platform_docker/compare/v0.18.0...v0.19.0) (2021-09-06)
 
 
 ### Features
 
-* **deepdetect:** upgrade to v0.18.0 ([a636f85](https://github.com/jolibrain/dd_platform_docker/commit/a636f85d55eb979cfb68ab642e5f82d82d6e6b04))
-* **platform_ui:** upgrade to v0.18.0 ([36caf76](https://github.com/jolibrain/dd_platform_docker/commit/36caf768b6e57c03fd3132495f1834bf9fc58608))
+* **deepdetect:** upgrade to v0.19.0 ([7ec06d5](https://github.com/jolibrain/dd_platform_docker/commit/7ec06d58b49eb389c57919ffb5db09e10f5815c4))
+* **platform_ui:** upgrade to v0.19.0 ([f4e8156](https://github.com/jolibrain/dd_platform_docker/commit/f4e8156ce9a6b9f3993f40a64f16288195c045db))
 
 
 ### Bug Fixes
 
-* blacklist LinkVideoExplorer from header links ([a2fdeee](https://github.com/jolibrain/dd_platform_docker/commit/a2fdeee0635ca2b74ec4cee8014c2dfc9ee2b225))
+* remove ouroboros unused docker container and references to version.json file ([e8af02e](https://github.com/jolibrain/dd_platform_docker/commit/e8af02e84e4c5da2bab0fd626191770d9d21298e))
+* update npm packages to remove Dependabot alerts ([d816a04](https://github.com/jolibrain/dd_platform_docker/commit/d816a043a8a36c12b267d6d4e2b9f9d87cee06c0))
