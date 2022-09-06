@@ -1,5 +1,5 @@
 #FROM cschranz/gpu-jupyter:latest
-FROM cschranz/gpu-jupyter:v1.4_cuda-11.2_ubuntu-20.04
+FROM cschranz/gpu-jupyter:v1.4_cuda-11.6_ubuntu-20.04
 
 
 # DeepDetect notebook dependencies
@@ -12,4 +12,4 @@ RUN pip install "git+https://github.com/jolibrain/deepdetect.git#egg=dd_client&s
 RUN sed -i '/"password"/d' /etc/jupyter/jupyter_notebook_config.json
 
 USER $NB_UID
-ADD files/jupyter_notebook_config.py /home/jovyan/.jupyter/
+ADD files/jupyter_server_config.py /etc/jupyter/

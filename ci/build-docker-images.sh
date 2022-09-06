@@ -35,6 +35,10 @@ for dir in ${!images[@]}; do
 
     cd $here/../$dir
     docker build --pull --no-cache -t $image_url:$TMP_TAG .
+    if [ "$?" -ne 0 ]; then
+        echo "Build of $image_url:$TAG_NAME failed"
+        exit -1
+    fi
 
     if [ "$TMP_TAG" != "dev" ]; then
         #docker tag $image_url:$TMP_TAG ceres:5000/$image_url:$TMP_TAG
