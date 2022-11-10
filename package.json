@@ -2,7 +2,7 @@
   "name": "deepdetect-platform",
   "description": "Open Source Deep Learning Platform",
   "private": true,
-  "version": "0.22.0",
+  "version": "0.23.0",
   "devDependencies": {
     "standard-version": "^9.3.1"
   },
