@@ -36,7 +36,7 @@ services:
     image: jolibrain/platform_ui:${DD_PLATFORM_UI_TAG}
     restart: always
     ports:
-      - '${DD_PORT:-1912}:80'
+      - '127.0.0.1:${DD_PORT:-1912}:80'
     links:
       - jupyter:jupyter
       - deepdetect:deepdetect
