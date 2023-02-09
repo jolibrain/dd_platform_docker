@@ -55,7 +55,7 @@ services:
 
   jupyter:
     image: jolibrain/jupyter_dd_notebook:${DD_JUPYTER_TAG}
-    runtime: nvidia
+#    runtime: nvidia
     user: root
     environment:
       - JUPYTER_LAB_ENABLE=yes

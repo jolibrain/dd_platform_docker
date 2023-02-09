@@ -67,13 +67,13 @@ services:
     volumes:
       - ${DD_PLATFORM}:/opt/platform
       - ${DD_PLATFORM}/notebooks:/home/jovyan/work
-    deploy:
-      resources:
-        reservations:
-          devices:
-          - driver: nvidia
-            count: all
-            capabilities: [gpu, utility]
+#    deploy:
+#      resources:
+#        reservations:
+#          devices:
+#          - driver: nvidia
+#            count: all
+#            capabilities: [gpu, utility]
 
   #
   # gpustat-server
