@@ -19,8 +19,8 @@ fi
 
 declare -A images
 
-images[jupyter]="jolibrain/jupyter_dd_notebook"
-images[filebrowser]="jolibrain/filebrowser"
+images[jupyter]="docker.jolibrain.com/jupyter_dd_notebook"
+images[filebrowser]="docker.jolibrain.com/filebrowser"
 
 for dir in ${!images[@]}; do
     image_url=${images[$dir]}
