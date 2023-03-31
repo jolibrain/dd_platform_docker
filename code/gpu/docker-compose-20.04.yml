@@ -8,7 +8,7 @@ services:
   #
 
   platform_data:
-    image: jolibrain/platform_data:latest
+    image: docker.jolibrain.com/platform_data:latest
     user: ${CURRENT_UID}
     volumes:
       - ${DD_PLATFORM}:/platform
@@ -19,7 +19,7 @@ services:
   #
 
   deepdetect:
-    image: jolibrain/deepdetect_${DD_SERVER_IMAGE}:${DD_SERVER_TAG}
+    image: docker.jolibrain.com/deepdetect_${DD_SERVER_IMAGE}:${DD_SERVER_TAG}
     restart: always
     volumes:
       - ${DD_PLATFORM}:/opt/platform
@@ -38,7 +38,7 @@ services:
   #
 
   platform_ui:
-    image: jolibrain/platform_ui:${DD_PLATFORM_UI_TAG}
+    image: docker.jolibrain.com/platform_ui:${DD_PLATFORM_UI_TAG}
     restart: always
     ports:
       - '127.0.0.1:${DD_PORT:-1912}:80'
@@ -59,7 +59,7 @@ services:
   #
 
   jupyter:
-    image: jolibrain/jupyter_dd_notebook:${DD_JUPYTER_TAG}
+    image: docker.jolibrain.com/jupyter_dd_notebook:${DD_JUPYTER_TAG}
     user: root
     environment:
       - JUPYTER_LAB_ENABLE=yes
@@ -79,7 +79,7 @@ services:
   # gpustat-server
   #
   gpustat_server:
-    image:  jolibrain/gpustat_server
+    image:  docker.jolibrain.com/gpustat_server
     deploy:
       resources:
         reservations:
@@ -92,7 +92,7 @@ services:
   # filebrowser
   #
   filebrowser:
-    image: jolibrain/filebrowser:${DD_FILEBROWSER_TAG}
+    image: docker.jolibrain.com/filebrowser:${DD_FILEBROWSER_TAG}
     restart: always
     user: ${CURRENT_UID}
     volumes:
