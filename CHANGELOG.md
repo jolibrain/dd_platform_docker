@@ -1,11 +1,15 @@
 # DeepDetect: Open Source Deep Learning Platform (Changelog)
 
-## [0.23.0](https://github.com/jolibrain/dd_platform_docker/compare/v0.22.0...v0.23.0) (2022-11-10)
+## [0.24.0](https://github.com/jolibrain/dd_platform_docker/compare/v0.23.0...v0.24.0) (2023-04-03)
 
 
 ### Features
 
-* **deepdetect:** upgrade to v0.22.1 ([6c1bc65](https://github.com/jolibrain/dd_platform_docker/commit/6c1bc65a36c5eba40f8b1688825acf36eb56b977))
-* **deepdetect:** upgrade to v0.23.1 ([1830d20](https://github.com/jolibrain/dd_platform_docker/commit/1830d207cf50d64fb0f25817ba5f7eba7ba9f3bf))
-* **platform_ui:** upgrade to v0.22.2 ([7423a88](https://github.com/jolibrain/dd_platform_docker/commit/7423a88be1412616d20739e024f048825136c8d1))
-* **platform_ui:** upgrade to v0.23.1 ([78d1f6c](https://github.com/jolibrain/dd_platform_docker/commit/78d1f6c6185df1d2efab96373548c8924757d789))
+* **deepdetect:** upgrade to v0.24.0 ([ab0eb51](https://github.com/jolibrain/dd_platform_docker/commit/ab0eb51f37d54940fb032260b9a5f1cbaa0208df))
+* **platform_ui:** upgrade to v0.24.0 ([18cc539](https://github.com/jolibrain/dd_platform_docker/commit/18cc5395de06eca47426ea9699f2d515c07be1e0))
+* use torch images by default ([d9eb7b7](https://github.com/jolibrain/dd_platform_docker/commit/d9eb7b7154dac5ec29d6331e4fa3f4004935be80))
+
+
+### Bug Fixes
+
+* missing default user in GPU DD compose config ([9ba46b2](https://github.com/jolibrain/dd_platform_docker/commit/9ba46b2bd0c845656366bdd34bb310260aa4d708))
