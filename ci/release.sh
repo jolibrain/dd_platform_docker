@@ -33,7 +33,7 @@ cat > note.md <<EOF
 
 * DeepDetect Server C++ and REST API: [$dd_server_version](https://github.com/jolibrain/deepdetect/releases/tag/$dd_server_version)
 * DeepDetect Platform UI: [$dd_platform_ui_version](https://github.com/jolibrain/platform_ui/releases/tag/$dd_platform_ui_version)
-* All docker images available on https://hub.docker.com/u/jolibrain
+* All docker images available on https://docker.jolibrain.com/
 EOF
 cat note.md.tmp >> note.md
 
