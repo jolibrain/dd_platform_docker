@@ -25,6 +25,9 @@ services:
     user: ${CURRENT_UID}
     volumes:
       - ${DD_PLATFORM}:/opt/platform
+    networks:
+      - platform_docker
+
 
   #
   # Platform UI
@@ -37,17 +40,14 @@ services:
     restart: always
     ports:
       - '127.0.0.1:${DD_PORT:-1912}:80'
-    links:
-      - jupyter:jupyter
-      - deepdetect:deepdetect
-      - gpustat_server
-      - filebrowser
-      - dozzle
     volumes:
       - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
       - ${DD_PLATFORM}:/opt/platform
       - ./config/platform_ui/config.json:/usr/share/nginx/html/config.json
       - ./.env:/usr/share/nginx/html/version
+    networks:
+      - platform_docker
+
 
   #
   # Jupyter notebooks
@@ -63,6 +63,9 @@ services:
     volumes:
       - ${DD_PLATFORM}:/opt/platform
       - ${DD_PLATFORM}/notebooks:/home/jovyan/work
+    networks:
+      - platform_docker
+
 
   #
   # gpustat-server
@@ -70,6 +73,9 @@ services:
   gpustat_server:
     image:  docker.jolibrain.com/gpustat_server
     runtime: nvidia
+    networks:
+      - platform_docker
+
 
   #
   # filebrowser
@@ -80,6 +86,9 @@ services:
     user: ${CURRENT_UID}
     volumes:
       - ${DD_PLATFORM}/data:/srv/data
+    networks:
+      - platform_docker
+
 
   #
   # real-time log viewer for docker containers
@@ -91,3 +100,10 @@ services:
       - DOZZLE_BASE=/docker-logs
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - platform_docker
+
+
+networks:
+  platform_docker:
+      driver: 'bridge'
